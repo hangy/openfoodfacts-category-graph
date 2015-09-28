@@ -1,13 +1,14 @@
 ﻿namespace OffCategoryGraph
 {
     using Microsoft.Msagl.Drawing;
-    using Microsoft.Msagl.Layout.MDS;
     using OffLangParser;
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Threading;
     using System.Windows.Forms;
 
@@ -34,7 +35,10 @@
 
         private LangFile ReadFile(string fileName)
         {
-            return this.parser.Value.Parse(fileName);
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None, 1, true))
+            {
+                return this.parser.Value.Parse(stream, Encoding.UTF8);
+            }
         }
 
         private Graph RenderGraph(LangFile langFile)
