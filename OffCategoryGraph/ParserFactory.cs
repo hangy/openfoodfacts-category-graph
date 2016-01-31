@@ -23,7 +23,8 @@
                             new CountryParser(),
                             new RegionParser(),
                             new InstanceOfParser(),
-                            new GrapeVarietyParser()
+                            new GrapeVarietyParser(),
+                            new LabelParser()
                          }))));
         }
     }
